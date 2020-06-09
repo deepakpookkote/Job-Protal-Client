@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="login">
+       <div class="container">
+            <h2>Register</h2>
+            <form [formGroup]="userRegisterForm" (ngSubmit)="initiateUserRegistration()">
+                <div formGroupName="userData">
+                    <div class="form-group">
+                        <input
+                            formControlName="userFullName"
+                            name="userFullName"
+                            type="text"
+                            placeholder="Full Name"><br>
+                             <span
+                                *ngIf="!userRegisterForm.get('userData.userFullName').valid && userRegisterForm.get('userData.userFullName').touched"
+                                class="help-block invalid-input-error">
+                                <span *ngIf="userRegisterForm.get('userData.userFullName').errors['nameIsForbidden']">This name is invalid!</span>
+                                <div *ngIf="userRegisterForm.get('userData.userFullName').errors.minlength">Name must be at least 5 characters</div>
+                                <span *ngIf="userRegisterForm.get('userData.userFullName').errors['required']">This field is required!</span>
+                            </span>
+                    </div>
+                    <div class="form-group">
+                        <input
+                            formControlName="userEmail"
+                            name="userEmail"
+                            type="email"
+                            class="form-control"
+                            placeholder="Email"/>
+                            <span
+                                *ngIf="!userRegisterForm.get('userData.userEmail').valid && userRegisterForm.get('userData.userEmail').touched"
+                                class="help-block invalid-input-error">Please enter a valid email!
+                            </span>
+                    </div>
+                    <div class="form-group">
+                        <input
+                            formControlName="userPhone"
+                            name="userPhone"
+                            type="text"
+                            class="form-control"
+                            placeholder="Mobile"/>
+                            <span
+                                *ngIf="!userRegisterForm.get('userData.userPhone').valid && userRegisterForm.get('userData.userPhone').touched"
+                                class="help-block invalid-input-error">Please enter a valid mobile number!
+                            </span>
+                    </div>
+                    <div class="form-group">
+                        <input
+                            formControlName="userPassword"
+                            name="userPassword"
+                            type="password"
+                            placeholder="Password"><br>
+                            <span *ngIf="!userRegisterForm.get('userData.userPassword').valid && userRegisterForm.get('userData.userPassword').touched" class="invalid-input-error">
+                                <div *ngIf="userRegisterForm.get('userData.userPassword').errors.minlength">Password must be at least 5 characters</div>
+                                <span *ngIf="userRegisterForm.get('userData.userPassword').errors['required']">This field is required!</span>
+                            </span>
+                    </div>
+                </div>
+                <button
+                    [disabled]= "userRegisterForm.status !== 'VALID'"
+                    [ngClass]="{'buttonDisabled': userRegisterForm.status !== 'VALID'}"
+                    type="submit">Register
+                </button>
+            </form>
+            <div class="clearfix"></div>
+            <span class="copyright">&copy;2020</span>
+       </div>
+    </div>
+    <div class="register">
+        <div class="container">
+            <i class="fa fa-user-plus fa-5x"></i>
+            <h2>Hello!!</h2>
+            <p>Already Registered? please login!</p>
+            <button [routerLink]="['/auth/login']">Login <i class="fa fa-arrow-circle-right"></i></button>
+        </div>
+    </div>
+  </div>

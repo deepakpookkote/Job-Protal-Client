@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h1>Candidate Profiles</h1>
+  <div class="row">
+    <div class="col-sm-12 mb-3">
+      <input type="text" id="myFilter" class="form-control" [(ngModel)]="filterQuery"  name="filterQuery" (blur)="getJobProfiles()" placeholder="Search for names..">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6"  *ngFor="let profile of profileData">
+      <div class="card" style="margin-bottom: 10px;">
+        <div class="card-body">
+          <h5 class="card-title"><a>{{profile.name}}</a></h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{profile.location}}</h6>
+          <p class="card-text">{{profile.aboutme}}</p>
+          <span>
+            <ul class="data" style="display: inline-flex;">
+              <li *ngFor="let skill of profile.skills">
+                <span class="entypo-heart">{{skill}}</span>
+              </li>
+            </ul>
+          </span>
+      </div>
+    </div>
+  </div>
+</div>
